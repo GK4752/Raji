@@ -1,0 +1,17 @@
+---
+- name: block and rescue concepts
+  hosts: gkservers
+  tasks:
+    - block:
+        - name: blockpart
+          apt:
+            name: git
+            state: present
+            update_cache: yes
+      rescue:
+        - name: rescue part
+          yum:
+            name: gitinstallation
+            state: present
+            update_cache: yes
+...
