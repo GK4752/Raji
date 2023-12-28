@@ -1,0 +1,21 @@
+---
+- name: error handling
+  hosts: all
+  become: true
+  tasks:
+   - block:
+     - name: apache2 installation
+       apt:
+         name: apache2
+         state: present
+         update_cache: yes
+     rescue:     
+       - name: httpd installation
+         yum:
+           name: httpd
+           state: present
+           update_cache: yes
+...
+              
+
+
