@@ -1,2 +1,14 @@
 ---
-
+- name: data modification
+  hosts: all
+  become: yes
+  tasks: 
+    - name: copy the content to nodes
+      ansible.builtin.lineinfile:
+       path: /etc/tomcat9/tomcat-users.xml
+       line: "{{item}}"
+      loop:
+        - '<tomcat-users>'
+        - '<user username="intelliqit" password="intelliqit" roles="manager-script"/>'
+        - '</tomcat-users>'
+...
